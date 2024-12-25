@@ -1,4 +1,4 @@
-# Zenskar-Assignment
+# Zenskar AI Assignment
 
 # Automated Contract Processing with LLM Explainability and Validation
 
@@ -13,8 +13,6 @@ This project involves extracting and validating key fields from contracts, gener
 ## **Approach and Thought Process**
 
 ### **1. Dynamic Prompt Engineering**
-
-The prompt engineering approach in this project is central to ensuring accurate field extraction from contracts. Below are the key techniques and considerations:
 
 #### **Dynamic Prompting**
 - **Dynamic Variability**: The prompt was designed dynamically with variations for each field. Fields such as "Contract ID," "Payment Terms," and "Billing Frequency" had unique instructions tailored to their expected structure and context within the document. For example:
@@ -39,9 +37,38 @@ The prompt engineering approach in this project is central to ensuring accurate 
 
 ---
 
-### **2. Challenges Faced and Resolutions**
+### **2. PDF Highlighting for Extracted Fields**
 
-#### **a. Designing Accurate Regex/SpaCy Patterns**
+#### **Highlighting Extracted Fields**
+- The extracted fields were marked directly on the contract PDF using PyMuPDF (fitz).
+- **Implementation**:
+  - For each extracted field, the program searched for its occurrence in the PDF using the `search_for` method.
+  - The corresponding text spans were highlighted with `add_highlight_annot`.
+  - A modified PDF with highlights was saved, allowing a clear visual reference for where each field was extracted.
+
+#### **Purpose**:
+- To provide an explainable and visual representation of field extractions.
+- This enhances the system's usability, enabling users to verify extractions directly on the document.
+
+---
+
+### **3. Validation and Explainability Logging**
+
+#### **Validation Logging**
+- A separate validation log was created to capture details of:
+  - Whether fields were valid, missing, or invalid in format.
+  - Actions taken for invalid fields, such as applying default values.
+
+#### **Explainability Logging**
+- The reasoning for each field's extraction was logged as part of the explainability module.
+- **Implementation**:
+  - During field extraction, the LLM generated reasoning logs, explaining where and why each field was extracted (e.g., "Matched near the phrase 'Client Name' in the document.").
+
+---
+
+## **Challenges Faced and Resolutions**
+
+### **a. Designing Accurate Regex/SpaCy Patterns**
 - **Challenge**: Creating regex patterns to validate diverse formats like monetary values, dates, and alphanumeric IDs while maintaining flexibility for variations.
 - **Resolution**: Iteratively refined patterns based on test cases. For example:
   - Dates: `^\d{4}-\d{2}-\d{2}$`
@@ -49,19 +76,19 @@ The prompt engineering approach in this project is central to ensuring accurate 
   - Alphanumeric fields: `^[A-Za-z0-9\s\-]+$`
 - SpaCy was also employed for advanced validations, such as detecting organization names.
 
-#### **b. Implementing Dynamic Prompting**
+### **b. Implementing Dynamic Prompting**
 - **Challenge**: Ensuring the prompt adapted dynamically to different fields and contexts.
 - **Resolution**: The prompt was modularized with specific instructions for each field, and the system dynamically assembled the final prompt for each contract.
 
-#### **c. Coding PDF Highlighting with PyMuPDF**
+### **c. Coding PDF Highlighting with PyMuPDF**
 - **Challenge**: Ensuring extracted fields were accurately highlighted in PDFs.
 - **Resolution**: Used PyMuPDF's `search_for` and `add_highlight_annot` methods. Iterated over all extracted fields and validated instances before applying highlights.
 
-#### **d. API Integration with Zenskar**
+### **d. API Integration with Zenskar**
 - **Challenge**: Resolving API authorization errors (e.g., 403 errors).
 - **Resolution**: Ensured correct inclusion of API keys, organization IDs, and payload formats as per the Zenskar documentation.
 
-#### **e. Validation and Explainability Logs**
+### **e. Validation and Explainability Logs**
 - **Challenge**: Logging validation and reasoning details without disrupting the flow of the code.
 - **Resolution**: Implemented separate `StringIO` buffers to capture logs for validation and explainability. This allowed logs to be stored in string variables for seamless reporting.
 
