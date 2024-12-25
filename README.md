@@ -84,11 +84,7 @@ This project involves extracting and validating key fields from contracts, gener
 - **Challenge**: Ensuring extracted fields were accurately highlighted in PDFs.
 - **Resolution**: Used PyMuPDF's `search_for` and `add_highlight_annot` methods. Iterated over all extracted fields and validated instances before applying highlights.
 
-### **d. API Integration with Zenskar**
-- **Challenge**: Resolving API authorization errors (e.g., 403 errors).
-- **Resolution**: Ensured correct inclusion of API keys, organization IDs, and payload formats as per the Zenskar documentation.
-
-### **e. Validation and Explainability Logs**
+### **d. Validation and Explainability Logs**
 - **Challenge**: Logging validation and reasoning details without disrupting the flow of the code.
 - **Resolution**: Implemented separate `StringIO` buffers to capture logs for validation and explainability. This allowed logs to be stored in string variables for seamless reporting.
 
