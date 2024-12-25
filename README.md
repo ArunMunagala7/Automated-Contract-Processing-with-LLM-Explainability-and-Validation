@@ -4,6 +4,8 @@
 
 ---
 
+**Direct Link to the notebook:**  https://colab.research.google.com/drive/1t0mP55NhkUq6rkQzhYX4n9dl005cLBgl?usp=sharing
+
 ## **Introduction**
 
 This project involves extracting and validating key fields from contracts, generating reasoning logs for each extracted field, creating visual overlays on PDFs, and integrating with the Zenskar Contract API. The system employs advanced techniques like dynamic prompting, validation with regex/SpaCy, LLM explainability, and API integration to provide a comprehensive solution for automated contract processing.
