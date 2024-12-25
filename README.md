@@ -109,10 +109,11 @@ This project involves extracting and validating key fields from contracts, gener
 
 3. **Run the Code**:
    - Execute the script step by step to:
-     1. Generate LLM outputs for field extraction.
-     2. Validate and transform extracted fields.
-     3. Highlight fields in the PDF and generate logs.
-     4. Post the validated data to the Zenskar API.
+     1. Upload the sample contract from the github repository
+     2. Generate LLM outputs for field extraction.
+     3. Validate and transform extracted fields.
+     4. Highlight fields in the PDF and generate logs.
+     5. Post the validated data to the Zenskar API.
 
 4. **Output Details**:
    - **Highlighted PDF**: Saved with visual overlays for extracted fields.
